@@ -3,15 +3,13 @@ Find the largest palindrome made from the product of
 two 3-digit integers
 '''
 
+from itertools import product, starmap, imap, ifilter
+from operator import mul
+
 start = 100
 end = 1000
-largest = 0
 
-for a in reversed(xrange(start, end)):
-    for b in reversed(xrange(start, a)):
-        value = a * b
+# The products of every three digit number
+products = starmap(mul, product(xrange(start, end), repeat=2))
 
-        if str(value) == str(value)[::-1]:
-            largest = max(largest, value)
-
-print largest
+print max(imap(int, ifilter(lambda x: x == x[::-1], imap(str, products))))
