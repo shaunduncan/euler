@@ -6,11 +6,11 @@ so I had to look up prime number checking
 '''
 
 from itertools import count, ifilter, dropwhile
-from util import is_prime
+from util import is_prime, odd
 
 
 found = 1  # We skip 2
-for value in dropwhile(lambda y: y <= 1, ifilter(lambda x: x % 2, count())):
+for value in dropwhile(lambda y: y <= 1, ifilter(odd, count())):
     if is_prime(value):
         found += 1
 

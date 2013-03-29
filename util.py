@@ -1,6 +1,20 @@
 import math
 
 
+def even(num):
+    '''
+    Rather than writing a lambda every time for checking even numbers
+    '''
+    return num % 2 == 0
+
+
+def odd(num):
+    '''
+    Rather than writing a lambda every time for checking odd numbers
+    '''
+    return num % 2 == 1
+
+
 def fib(num):
     '''
     Calculates Fibonacci number by remembering past ones
@@ -22,7 +36,7 @@ def collatz(n):
     '''
     if n == 1:
         return 1
-    if n % 2 == 0:
+    if even(n):
         return n / 2
     else:
         return (3 * n) + 1

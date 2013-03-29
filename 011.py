@@ -2,6 +2,7 @@
 Find the maximum product of numbers in one direction of 20x20 grid
 '''
 
+from itertools import product
 from operator import mul
 
 grid = '''
@@ -35,25 +36,23 @@ maximum = 0
 distance = 4
 maxlen = 20
 
-# Horizontal
-for i in xrange(maxlen):
-    for j in xrange(maxlen):
-        # Horizontal
-        if j + distance < maxlen:
-            maximum = max(maximum, reduce(mul, grid[i][j:j + distance]))
+for i, j in product(xrange(maxlen), repeat=2):
+    # Horizontal
+    if j + distance < maxlen:
+        maximum = max(maximum, reduce(mul, grid[i][j:j + distance]))
 
-        # Vertical
-        if i + distance < maxlen:
-            maximum = max(maximum, reduce(mul, zip(*grid[i:i + distance])[j]))
+    # Vertical
+    if i + distance < maxlen:
+        maximum = max(maximum, reduce(mul, zip(*grid[i:i + distance])[j]))
 
-        # Diagonal
-        if i + distance < maxlen and j + distance < maxlen:
-            numbers = [grid[i + x][j + x] for x in xrange(4)]
-            maximum = max(maximum, reduce(mul, numbers))
+    # Diagonal
+    if i + distance < maxlen and j + distance < maxlen:
+        numbers = [grid[i + x][j + x] for x in xrange(4)]
+        maximum = max(maximum, reduce(mul, numbers))
 
-        # Inverse Diagonal
-        if i + distance < maxlen and j - distance > 0:
-            numbers = [grid[i + x][j - x] for x in xrange(4)]
-            maximum = max(maximum, reduce(mul, numbers))
+    # Inverse Diagonal
+    if i + distance < maxlen and j - distance > 0:
+        numbers = [grid[i + x][j - x] for x in xrange(4)]
+        maximum = max(maximum, reduce(mul, numbers))
 
 print maximum
