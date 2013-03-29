@@ -18,4 +18,4 @@ for n in ifilter(lambda x: x % 2, xrange(3, stop)):
         primes.add(n)
 
 
-print max(*primes)
+print max(primes)
