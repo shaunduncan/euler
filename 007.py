@@ -2,7 +2,7 @@
 Find the 10001st prime
 
 Not going to lie, my brain is much too far out of college
-so I had to look this one up
+so I had to look up prime number checking
 '''
 
 from itertools import count, ifilter, dropwhile
