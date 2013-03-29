@@ -25,7 +25,7 @@ num = ''.join('''
 71636269561882670428252483600823257530420752963450
 '''.strip().split('\n'))
 
-maximum = 0
+largest = 0
 length = len(num)
 
 
@@ -36,8 +36,7 @@ for start, char in enumerate(num):
         break
 
     value = reduce(lambda x, y: x * y, map(int, num[start:end]))
-    if value > maximum:
-        maximum = value
+    largest = max(largest, value)
 
 
-print maximum
+print largest
