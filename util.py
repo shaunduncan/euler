@@ -66,3 +66,29 @@ def lcm(a, b):
     gcd(a, b) = (a * b) / lcm(a, b)
     '''
     return (a * b) // gcd(a, b)
+
+
+def divisors(n):
+    '''
+    Find the unique divisors from [1,n). Note that this will include 1, but not n.
+    Repeatedly lower the top-end limit as a divisor is found
+    '''
+    nums = {1}
+    limit = n
+    i = 2
+
+    while i < limit:
+        if n % i == 0:
+            limit = n / i
+            nums.update([i, limit])
+        i += 1
+
+    return nums
+
+
+def sum_of_divisors(n):
+    '''
+    Find the sum of unique divisors from [1,n). Note that this will include 1, but not n.
+    Repeatedly lower the top-end limit as a divisor is found
+    '''
+    return sum(divisors(n))

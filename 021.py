@@ -1,26 +1,19 @@
+"""
+Let d(n) be defined as the sum of proper divisors of n (numbers less than n which
+divide evenly into n). If d(a) = b and d(b) = a, where a ≠ b, then a and b are an
+amicable pair and each of a and b are called amicable numbers.
+
+For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and
+110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so
+d(284) = 220.
+
+Evaluate the sum of all the amicable numbers under 10000.
+"""
 from itertools import ifilter
+from util import sum_of_divisors
 
 
-MAX = 10000
 FOUND = set()
-
-
-def divsum(n):
-    """
-    Find the sum of divisors from [1,n). Note that this will include 1, but not n.
-    Repeatedly lower the top-end limit as a divisor is found
-    """
-    nums = [1]
-    limit = n
-    i = 2
-
-    while i < limit:
-        if n % i == 0:
-            limit = n / i
-            nums.extend([i, limit])
-        i += 1
-
-    return sum(nums)
 
 
 def is_amicable(a):
@@ -34,16 +27,16 @@ def is_amicable(a):
     if a in FOUND:
         return True
 
-    b = divsum(a)
+    b = sum_of_divisors(a)
 
     if b == a:
         return False
 
-    if divsum(b) == a:
+    if sum_of_divisors(b) == a:
         FOUND.update([a, b])
         return True
 
     return False
 
 
-print sum(ifilter(is_amicable, xrange(MAX)))
+print sum(ifilter(is_amicable, xrange(10000)))
