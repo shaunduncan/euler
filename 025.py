@@ -1,6 +1,5 @@
 '''
 Find the first Fibonacci number with 1000 digits
-Find the sum of even fibonacci sequence numbers < 4,000,000
 '''
 
 from itertools import count, imap
